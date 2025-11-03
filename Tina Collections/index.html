@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tina Collections - Online Shopping</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <h1 class="logo" onclick="showHomePage(); closeMobileMenu();">Tina Collections</h1>
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+                    <span class="hamburger"></span>
+                    <span class="hamburger"></span>
+                    <span class="hamburger"></span>
+                </button>
+                <div class="nav-links" id="nav-links">
+                    <a href="#home">Home</a>
+                    <a href="#products">Products</a>
+                    <a href="#about">About Us</a>
+                    <a href="#contact">Contact</a>
+                    <a href="#cart" class="cart-link">
+                        Cart (<span id="cart-count">0</span>)
+                    </a>
+                </div>
+            </div>
+        </nav>
+        <div class="mobile-menu-overlay" id="mobile-menu-overlay" onclick="closeMobileMenu()"></div>
+    </header>
+
+    <main>
+        <!-- HOME PAGE -->
+        <div id="home-page">
+            <section class="hero">
+                <!-- Background Video -->
+                <video class="hero-video" autoplay muted loop playsinline>
+                    <source src="videos/homepage-bg.mp4" type="video/mp4">
+                </video>
+                <div class="hero-overlay"></div>
+
+                <div class="container">
+                    <div class="hero-content">
+                        <h2>Tina Collections</h2>
+                        <h3>Authentic African Fashion</h3>
+                        <p>Premium Shirts & Hoodies with Traditional African Designs - Available in All Colors!</p>
+                        <div class="hero-buttons">
+                            <button onclick="showProductsPage()" class="btn btn-hero-primary">Shop Now</button>
+                            <button onclick="showContact()" class="btn btn-hero-secondary">Contact Us</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="features-section">
+                <div class="container">
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">👕</div>
+                            <h3>Premium Quality</h3>
+                            <p>High-quality cotton fabrics with authentic African prints</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🎨</div>
+                            <h3>Traditional Designs</h3>
+                            <p>Featuring Ankara, Kente, Dashiki, and more African patterns</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🚚</div>
+                            <h3>Fast Delivery</h3>
+                            <p>Quick and reliable delivery across Liberia</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">💳</div>
+                            <h3>Easy Payment</h3>
+                            <p>Pay with Orange Money or Lonestar Money</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="categories-section">
+                <div class="container">
+                    <h2>Our Collections</h2>
+                    <div class="categories-grid">
+                        <div class="category-card" onclick="showProductsPage()">
+                            <div class="category-icon">👕</div>
+                            <h3>African Print Shirts</h3>
+                            <p>Shirts with vibrant African designs - Available in all colors!</p>
+                            <span class="category-link">Shop Shirts →</span>
+                        </div>
+                        <div class="category-card" onclick="showProductsPage()">
+                            <div class="category-icon">🧥</div>
+                            <h3>African Print Hoodies</h3>
+                            <p>Comfortable hoodies with traditional patterns - Available in all colors!</p>
+                            <span class="category-link">Shop Hoodies →</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="about-section">
+                <div class="container">
+                    <div class="about-content">
+                        <h2>Why Choose Tina Collections?</h2>
+                        <p>At Tina Collections, we celebrate African heritage through fashion. Our carefully curated collection features premium shirts and hoodies adorned with authentic African prints including Ankara, Kente, Dashiki, Adire, and Mudcloth patterns - available in every color imaginable!</p>
+                        <p>Each piece is designed to blend traditional African artistry with modern comfort and style, perfect for both casual wear and special occasions.</p>
+                        <div class="about-stats">
+                            <div class="stat-item">
+                                <h3>100%</h3>
+                                <p>Authentic Designs</p>
+                            </div>
+                            <div class="stat-item">
+                                <h3>Premium</h3>
+                                <p>Quality Fabrics</p>
+                            </div>
+                            <div class="stat-item">
+                                <h3>Fast</h3>
+                                <p>Delivery Service</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- PRODUCTS PAGE -->
+        <section id="products-page" class="products-section" style="display: none;">
+            <div class="container">
+                <button class="back-button" onclick="showHomePage()">
+                    <span class="back-arrow">←</span> Back to Home
+                </button>
+                <div class="products-header">
+                    <h2>Our Products</h2>
+                    <p class="products-subtitle">Discover our collection of premium African print clothing</p>
+                </div>
+
+                <div class="products-filters">
+                    <div class="filter-group">
+                        <label>Category:</label>
+                        <button class="filter-btn active" onclick="filterProducts('all')">All Products</button>
+                        <button class="filter-btn" onclick="filterProducts('shirt')">Shirts</button>
+                        <button class="filter-btn" onclick="filterProducts('hoodie')">Hoodies</button>
+                    </div>
+                    <div class="filter-group">
+                        <label>Sort By:</label>
+                        <select id="sort-select" onchange="sortProducts(this.value)" class="sort-select">
+                            <option value="default">Featured</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="name">Name: A to Z</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="products-count">
+                    <span id="products-count-text">Showing all 12 products</span>
+                </div>
+
+                <div class="products-grid" id="products-grid">
+                    <!-- Products will be loaded here by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <section id="cart" class="cart-section" style="display: none;">
+            <div class="container">
+                <button class="back-button" onclick="showProductsPage()">
+                    <span class="back-arrow">←</span> Back to Products
+                </button>
+                <h2>Shopping Cart</h2>
+                <div id="cart-items"></div>
+                <div class="cart-summary">
+                    <h3>Total: L$<span id="cart-total">0.00</span></h3>
+                    <button onclick="showCheckout()" class="btn btn-primary">Proceed to Checkout</button>
+                    <button onclick="showProductsPage()" class="btn btn-secondary">Continue Shopping</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="checkout" class="checkout-section" style="display: none;">
+            <div class="container">
+                <button class="back-button" onclick="showCart()">
+                    <span class="back-arrow">←</span> Back to Cart
+                </button>
+                <h2>Checkout</h2>
+                <div class="checkout-content">
+                    <div class="order-summary">
+                        <h3>Order Summary</h3>
+                        <div id="checkout-items"></div>
+                        <div class="total">
+                            <strong>Total: L$<span id="checkout-total">0.00</span></strong>
+                        </div>
+                    </div>
+                    <div class="payment-section">
+                        <h3>Payment Method</h3>
+                        <div class="payment-options">
+                            <label class="payment-option">
+                                <input type="radio" name="payment" value="orange-money" checked>
+                                <div class="payment-card orange-money">
+                                    <span class="payment-logo">🟠</span>
+                                    <span>Orange Money</span>
+                                </div>
+                            </label>
+                            <label class="payment-option">
+                                <input type="radio" name="payment" value="lonestar-money">
+                                <div class="payment-card lonestar-money">
+                                    <span class="payment-logo">⭐</span>
+                                    <span>Lonestar Money</span>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="customer-info">
+                            <h3>Customer Information</h3>
+                            <input type="text" id="customer-name" placeholder="Full Name" pattern="[A-Za-z\s]+" title="Please enter letters only" required>
+                            <input type="tel" id="customer-phone" placeholder="Phone Number" pattern="[0-9+\s\-()]+" title="Please enter numbers only" required>
+                            <input type="text" id="customer-address" placeholder="Delivery Address" required>
+                        </div>
+                        <button onclick="completeOrder()" class="btn btn-primary btn-large">Complete Order</button>
+                        <button onclick="showCart()" class="btn btn-secondary">Back to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT PAGE -->
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <button class="back-button" onclick="showHomePage()">
+                    <span class="back-arrow">←</span> Back to Home
+                </button>
+
+                <!-- Contact Hero -->
+                <div class="contact-hero">
+                    <h1>Get in Touch</h1>
+                    <p>We'd love to hear from you! Whether you have questions about our products or need assistance, we're here to help.</p>
+                </div>
+
+                <!-- Contact Cards Grid -->
+                <div class="contact-cards-grid">
+                    <div class="contact-card">
+                        <div class="contact-card-icon">📞</div>
+                        <h3>Call Us</h3>
+                        <p>+231 775 913 964</p>
+                        <p class="contact-card-detail">Mon - Sat, 9:00 AM - 6:00 PM</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-card-icon">✉️</div>
+                        <h3>Email Us</h3>
+                        <p>info@tinacollections.com</p>
+                        <p class="contact-card-detail">We reply within 24 hours</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-card-icon">📍</div>
+                        <h3>Visit Us</h3>
+                        <p>Monrovia, Liberia</p>
+                        <p class="contact-card-detail">Come see our collection in person</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-card-icon">⏰</div>
+                        <h3>Business Hours</h3>
+                        <p>Monday - Saturday</p>
+                        <p class="contact-card-detail">9:00 AM - 6:00 PM</p>
+                        <p class="contact-card-detail">Sunday: Closed</p>
+                    </div>
+                </div>
+
+                <!-- Contact Form Section -->
+                <div class="contact-form-section">
+                    <div class="contact-form-container">
+                        <div class="contact-form-header">
+                            <h2>Send Us a Message</h2>
+                            <p>Fill out the form below and we'll get back to you as soon as possible</p>
+                        </div>
+                        <form onsubmit="sendMessage(event)" class="modern-contact-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="message-name">Full Name</label>
+                                    <input type="text" id="message-name" placeholder="John Doe" pattern="[A-Za-z\s]+" title="Please enter letters only" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="message-email">Email Address</label>
+                                    <input type="email" id="message-email" placeholder="john@example.com" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="message-phone">Phone Number</label>
+                                <input type="tel" id="message-phone" placeholder="+231 123 456 789" pattern="[0-9+\s\-()]+" title="Please enter numbers only" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text">Your Message</label>
+                                <textarea id="message-text" placeholder="Tell us what you need help with..." rows="6" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-contact-submit">
+                                <span>Send Message</span>
+                                <span class="btn-arrow">→</span>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Contact Sidebar -->
+                    <div class="contact-sidebar">
+                        <div class="contact-sidebar-card">
+                            <h3>Why Choose Us?</h3>
+                            <ul class="contact-benefits">
+                                <li>
+                                    <span class="benefit-icon">✓</span>
+                                    <span>Fast Response Time</span>
+                                </li>
+                                <li>
+                                    <span class="benefit-icon">✓</span>
+                                    <span>Premium Quality Products</span>
+                                </li>
+                                <li>
+                                    <span class="benefit-icon">✓</span>
+                                    <span>Authentic African Designs</span>
+                                </li>
+                                <li>
+                                    <span class="benefit-icon">✓</span>
+                                    <span>Reliable Delivery</span>
+                                </li>
+                                <li>
+                                    <span class="benefit-icon">✓</span>
+                                    <span>Excellent Customer Service</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="contact-sidebar-card contact-social">
+                            <h3>Follow Us</h3>
+                            <p>Stay connected with us on social media for updates and new arrivals</p>
+                            <div class="social-links-contact">
+                                <a href="#" class="social-link-contact">
+                                    <span>📘</span> Facebook
+                                </a>
+                                <a href="#" class="social-link-contact">
+                                    <span>📷</span> Instagram
+                                </a>
+                                <a href="#" class="social-link-contact">
+                                    <span>💬</span> WhatsApp
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about-us-page" style="display: none;">
+            <div class="container">
+                <button class="back-button" onclick="showHomePage()">
+                    <span class="back-arrow">←</span> Back to Home
+                </button>
+                <div class="about-hero">
+                    <h1>About Tina Collections</h1>
+                    <p class="about-tagline">Celebrating African Heritage Through Fashion</p>
+                </div>
+
+                <div class="about-story">
+                    <div class="story-content">
+                        <h2>Our Story</h2>
+                        <p>Founded in the heart of Monrovia, Liberia, Tina Collections was born from a passion for African culture and contemporary fashion. We believe that clothing is more than just fabric—it's a celebration of identity, heritage, and artistic expression.</p>
+                        <p>Our journey began with a simple vision: to create premium clothing that honors traditional African designs while meeting the standards of modern fashion. Each piece in our collection tells a story, connecting the rich tapestry of African heritage with today's style-conscious individuals.</p>
+                    </div>
+                    <div class="story-image">
+                        <img src="tina-store.JPG" alt="Tina Collections Story" style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px;">
+                    </div>
+                </div>
+
+                <div class="about-mission">
+                    <h2>Our Mission</h2>
+                    <div class="mission-grid">
+                        <div class="mission-card">
+                            <div class="mission-icon">🎯</div>
+                            <h3>Quality First</h3>
+                            <p>We source only the finest cotton fabrics and work with skilled artisans to ensure every piece meets our high standards of quality and comfort.</p>
+                        </div>
+                        <div class="mission-card">
+                            <div class="mission-icon">🌟</div>
+                            <h3>Authentic Designs</h3>
+                            <p>Our designs feature genuine African patterns including Ankara, Kente, Dashiki, Adire, and Mudcloth, preserving cultural authenticity in every stitch.</p>
+                        </div>
+                        <div class="mission-card">
+                            <div class="mission-icon">❤️</div>
+                            <h3>Customer Satisfaction</h3>
+                            <p>Your satisfaction is our priority. We're committed to providing excellent service, from browsing to delivery and beyond.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-values">
+                    <h2>Why Choose Us</h2>
+                    <div class="values-content">
+                        <div class="value-item">
+                            <h3>Premium Materials</h3>
+                            <p>We use only high-quality cotton fabrics that are soft, durable, and comfortable for everyday wear.</p>
+                        </div>
+                        <div class="value-item">
+                            <h3>Cultural Authenticity</h3>
+                            <p>Every design is inspired by traditional African patterns, carefully adapted for modern fashion.</p>
+                        </div>
+                        <div class="value-item">
+                            <h3>Perfect Fit</h3>
+                            <p>Available in sizes S to XXL, ensuring everyone can enjoy our beautiful designs.</p>
+                        </div>
+                        <div class="value-item">
+                            <h3>Local Business</h3>
+                            <p>Proudly based in Monrovia, supporting local communities and Liberian fashion.</p>
+                        </div>
+                        <div class="value-item">
+                            <h3>Fast Delivery</h3>
+                            <p>Quick and reliable delivery service across Liberia, getting your order to you promptly.</p>
+                        </div>
+                        <div class="value-item">
+                            <h3>Secure Payments</h3>
+                            <p>Convenient payment options including Orange Money and Lonestar Money for your security.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-cta">
+                    <h2>Ready to Shop?</h2>
+                    <p>Discover our collection of premium African print clothing</p>
+                    <button onclick="showProductsPage()" class="btn btn-primary btn-large">Browse Products</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Tina Collections. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Supabase Client Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
+    <script src="script.js"></script>
+
+    <!-- Tawk.to Live Chat Widget -->
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/690880cb9dbef619524af7fb/1j94je788';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+    <!--End of Tawk.to Script-->
+</body>
+</html>
